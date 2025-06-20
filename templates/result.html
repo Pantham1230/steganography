@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card p-4 shadow col-md-8 mx-auto text-center">
+      {% if image %}
+        <h4>✅ Message Successfully Encoded!</h4>
+        <img src="{{ image }}" class="img-fluid my-3" alt="Encoded Image">
+        <a href="/download" class="btn btn-primary">⬇ Download Encoded Image</a>
+      {% elif message %}
+        <h4>✅ Decoded Message:</h4>
+        <div class="alert alert-{{ 'danger' if '❌' in message else 'success' }}">{{ message }}</div>
+        {% endif %}
+      <a href="/dashboard" class="btn btn-link mt-4">Back to Dashboard</a>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

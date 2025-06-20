@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decode Message</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card p-4 shadow col-md-6 mx-auto">
+      <h3 class="text-center">🔓 Decode Hidden Message</h3>
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label>Encoded Image</label>
+          <input type="file" name="encoded_image" class="form-control" required>
+        </div>
+        <button class="btn btn-warning w-100">Decode</button>
+      </form>
+      <a href="/dashboard" class="btn btn-link mt-3">Back to Dashboard</a>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

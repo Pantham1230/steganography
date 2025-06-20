@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encode Message</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card p-4 shadow col-md-6 mx-auto">
+      <h3 class="text-center">🔒 Encode Message into Image</h3>
+      <form method="POST" enctype="multipart/form-data" onsubmit="showProgress()">
+        <div class="mb-3">
+          <label>Cover Image</label>
+          <input type="file" name="cover_image" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label>Secret Message</label>
+          <textarea name="message" class="form-control" rows="4" required></textarea>
+        </div>
+        <button class="btn btn-success w-100">Encode</button>
+      </form>
+      <div id="progress" class="text-info text-center mt-3" style="display:none;">
+        ⏳ Encoding... Please wait.
+      </div>
+      <a href="/dashboard" class="btn btn-link mt-3">Back to Dashboard</a>
+    </div>
+  </div>
+
+ <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>
