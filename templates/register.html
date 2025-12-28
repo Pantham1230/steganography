@@ -1,27 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Register</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card shadow p-4 col-md-6 mx-auto">
-      <h3 class="text-center mb-3">📝 Create Account</h3>
-      <form method="POST">
-        <div class="mb-3">
-          <label>Username</label>
-          <input type="text" name="username" class="form-control" required>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card auth-card">
+      <div class="card-header">
+        <h1 class="page-title">Steganography</h1>
+        <h2 class="card-title">Create Account</h2>
+        <p class="card-subtitle">Join to start hiding messages in images securely.</p>
+      </div>
+      
+      <form method="POST" class="auth-form">
+        <div class="input-group">
+          <label class="input-label">Username</label>
+          <input type="text" name="username" placeholder="Enter your username" required>
         </div>
-        <div class="mb-3">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" required>
+        
+        <div class="input-group">
+          <label class="input-label">Password</label>
+          <input type="password" name="password" placeholder="Create a strong password" required>
         </div>
-        <button class="btn btn-primary w-100">Register</button>
+        
+        <button type="submit" class="primary-btn">
+          <span>Register</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </button>
       </form>
-      <p class="text-center mt-3">Already have an account? <a href="/">Login</a></p>
+
+      <div class="auth-footer">
+        <a href="/login" class="auth-link">Already have an account? Login</a>
+      </div>
     </div>
   </div>
-<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
 </body>
 </html>

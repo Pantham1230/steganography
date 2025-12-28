@@ -1,54 +1,115 @@
-# 🕵️‍♀️ Steganography Web App
+# 🕵️‍♀️ Image Steganography Web Application
 
-A Flask-based web application that allows users to **securely hide and retrieve messages** inside images using the **Least Significant Bit (LSB)** steganography technique.
+## 📌 Project Overview
+This project is a **web-based Image Steganography application** that allows users to **securely hide and retrieve secret messages inside a cover image**.  
+The main goal is to demonstrate **secure data hiding techniques** using steganography while maintaining the visual quality of the image.
+
+The application provides a simple and user-friendly interface to:
+- Encode secret data into an image
+- Decode hidden data from a stego image
+
+## 🎯 Features
+- 🔐 Secure message hiding using image steganography
+- 🖼️ Encode secret text or image inside a cover image
+- 🔍 Decode hidden data from stego image
+- 👤 Login-based access for users
+- 🌐 Web-based interface
+- 📁 Supports multiple image formats
+- 🧪 Easy testing and demonstration
+
+## 🛠️ Technologies Used
+- **Frontend:** HTML, CSS
+- **Backend:** Python, Flask
+- **Image Processing:** Pillow (PIL)
+- **Other Libraries:** NumPy
+- **Tools:** Git, GitHub
+
+## 🧩 Project Structure
+steganography-project/
+│
+├── app.py
+├── steganography.py
+├── init_db.py
+├── templates/
+│ ├── login.html
+| ├── index.html
+│ ├── encode.html
+│ ├── decode.html
+| ├── register.html
+│ ├── dashboard.html
+│ └── result.html
+├── static/
+│ ├── css/
+│ │ └── style.css
+│ └── js/
+| | └── flash.js
+| | └── progress.js
+├── screenshots/
+│ ├── LandingPage.png
+│ ├── Login.png
+│ ├── Register.png
+│ ├── Encode.png
+│ ├── Decode.png
+│ ├── Encoded_result.png
+│ └── Decoded_result.png
+├── README.md
+└── requirements.txt
+
 
 ---
 
-## 🚀 Features
+## 🚀 How It Works
+### Encoding Process
+1. User selects a cover image.
+2. User enters a secret message or selects a secret image.
+3. The data is embedded into the image using steganography techniques.
+4. A new **stego image** is generated.
 
-- 🔐 **User Authentication**: Login and registration system with SQLite backend.
-- 📥 **Encode Mode**: Embed secret text inside cover images (PNG or JPG).
-- 🕵️‍♂️ **Decode Mode**: Extract hidden messages from encoded images.
-- 📸 **Image Upload Handling**: File size validation and secure image saving.
-- 💾 **Database**: SQLite for user account management.
-- 💡 **Clean UI**: Simple interface using HTML, CSS, and optionally Bootstrap.
+### Decoding Process
+1. User uploads the stego image.
+2. The hidden data is extracted and displayed.
 
----
+## 🧪 Screenshots
+All application screenshots are available in the **`screenshots/`** folder for better understanding of the UI and workflow.
 
-## 🧠 How It Works
+## 🎥 Demo Video
+📎 A complete working demo of the project is available here:  
+👉 **Demo Link:** https://drive.google.com/file/d/1AaluppN5TcYt452ajHdd9WoC49CQtbdr/view?usp=drivesdk
 
-### 🔹 Encoding Algorithm
-1. Convert input message to binary.
-2. Replace the LSB of red channel values in each pixel with message bits.
-3. Add a `$$end` marker to indicate the end of the message.
-4. Save the modified image as a **stego image**.
+## ⚙️ Installation & Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
 
-### 🔹 Decoding Algorithm
-1. Read LSBs from the red channel of each pixel.
-2. Reconstruct binary string and convert it to characters.
-3. Stop when `$$end` is detected.
-4. Display the secret message.
+2. Navigate to the project folder:
+cd steganography-project
 
----
+3. Install dependencies:
+pip install -r requirements.txt
 
-## 🛠 Technologies Used
+4. Run the application:
+python app.py
 
-- Python 3.x
-- Flask
-- Pillow (PIL)
-- SQLite3
-- HTML5 & CSS3
-- Bootstrap 5 *(optional)*
+5. Open browser and visit:
+http://127.0.0.1:5000
 
----
+## 📚 Use Cases
+Secure communication
+Data privacy demonstrations
+Academic learning and research
+Cyber security and information hiding concepts
 
-## 📦 Installation
+## 🎓 Academic Purpose
 
-### 🔧 Clone the Repository
-```bash
-git clone https://github.com/Pantham1230/steganography.git
-cd steganography
+This project was developed as part of EDUNET FOUNDATION - IBM SKILLSBUILD - CYBER SECURITY - 6 WEEKS INTERNSHIP MAY 2025 to understand:
+Image processing
+Secure data hiding
+Web application development using Flask
 
- Author
+## 👩‍💻 Author
 Pantham Bhavya
-https://www.linkedin.com/in/pantham-bhavya
+B.Tech – Computer Science (AI & ML)
+Sridevi Women’s Engineering College
+
+## 📄 License
+This project is for educational purposes only.

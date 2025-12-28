@@ -1,4 +1,3 @@
 __pycache__/
 users.db
-static/uploads/
-static/js/
+venv/

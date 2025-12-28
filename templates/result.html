@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Result</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow col-md-8 mx-auto text-center">
-      {% if image %}
-        <h4>✅ Message Successfully Encoded!</h4>
-        <img src="{{ image }}" class="img-fluid my-3" alt="Encoded Image">
-        <a href="/download" class="btn btn-primary">⬇ Download Encoded Image</a>
-      {% elif message %}
-        <h4>✅ Decoded Message:</h4>
-        <div class="alert alert-{{ 'danger' if '❌' in message else 'success' }}">{{ message }}</div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card result-card">
+      <div class="card-header">
+        <h1 class="page-title">Result</h1>
+        {% if image %}
+          <div class="success-state">
+            <div class="success-icon">✅</div>
+            <h2 class="card-title">Message Encoded!</h2>
+          </div>
+        {% elif message %}
+          <div class="success-state">
+            <div class="success-icon">📄</div>
+            <h2 class="card-title">Message Decoded!</h2>
+          </div>
         {% endif %}
-      <a href="/dashboard" class="btn btn-link mt-4">Back to Dashboard</a>
+      </div>
+      
+      {% if image %}
+        <div class="result-image">
+          <img src="{{ image }}" alt="Encoded Image" class="result-img">
+        </div>
+        <a href="/download" class="download-btn primary-btn large">
+          <span>⬇ Download Image</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+          </svg>
+        </a>
+      {% elif message %}
+        <div class="result-message">
+          <div class="message-content">{{ message }}</div>
+        </div>
+      {% endif %}
+
+      <div class="page-footer">
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+      </div>
     </div>
   </div>
-  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
 </body>
 </html>

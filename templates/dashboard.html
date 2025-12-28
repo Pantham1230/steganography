@@ -1,19 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow col-md-6 mx-auto text-center">
-      <h2>Welcome, {{ session['user'] }} 👋</h2>
-      <p class="mt-3">What would you like to do?</p>
-      <a href="/encode" class="btn btn-primary m-2 w-100">🔒 Encode a Message</a>
-      <a href="/decode" class="btn btn-warning m-2 w-100">🔓 Decode a Message</a>
-      <a href="/logout" class="btn btn-danger mt-3">Logout</a>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card dashboard-card">
+      <div class="card-header">
+        <h1 class="page-title">Welcome Back</h1>
+        <h2 class="card-title">Hello, {{ session['user'] }} 👋</h2>
+        <p class="card-subtitle">Choose an action to encode or decode messages</p>
+      </div>
+      
+      <div class="dashboard-actions">
+        <a href="/encode" class="action-card encode-card">
+          <div class="action-icon">🔒</div>
+          <h3>Encode Message</h3>
+          <p>Hide text in your images</p>
+          <div class="action-arrow">→</div>
+        </a>
+        
+        <a href="/decode" class="action-card decode-card">
+          <div class="action-icon">🔓</div>
+          <h3>Decode Message</h3>
+          <p>Extract hidden text</p>
+          <div class="action-arrow">→</div>
+        </a>
+        
+        <a href="/logout" class="logout-btn">
+          <span>Logout</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
-<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
 </body>
 </html>

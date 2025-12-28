@@ -1,32 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Encode Message</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow col-md-6 mx-auto">
-      <h3 class="text-center">🔒 Encode Message into Image</h3>
-      <form method="POST" enctype="multipart/form-data" onsubmit="showProgress()">
-        <div class="mb-3">
-          <label>Cover Image</label>
-          <input type="file" name="cover_image" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label>Secret Message</label>
-          <textarea name="message" class="form-control" rows="4" required></textarea>
-        </div>
-        <button class="btn btn-success w-100">Encode</button>
-      </form>
-      <div id="progress" class="text-info text-center mt-3" style="display:none;">
-        ⏳ Encoding... Please wait.
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Encode</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
       </div>
-      <a href="/dashboard" class="btn btn-link mt-3">Back to Dashboard</a>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card encode-card">
+      <div class="card-header">
+        <h1 class="page-title">Encode</h1>
+        <h2 class="card-title">🔒 Hide Message</h2>
+        <p class="card-subtitle">Embed secret text into your cover image</p>
+      </div>
+      
+      <form method="POST" enctype="multipart/form-data" class="encode-form" onsubmit="showProgress()">
+        <div class="input-group">
+          <label class="input-label">Cover Image</label>
+          <div class="file-input-wrapper">
+            <input type="file" name="cover_image" accept="image/*" required>
+            <span class="file-icon">📷</span>
+          </div>
+        </div>
+        
+        <div class="input-group">
+          <label class="input-label">Secret Message</label>
+          <textarea name="message" placeholder="Type your secret message here..." rows="4" required></textarea>
+        </div>
+        
+        <button type="submit" class="primary-btn large">
+          <span>Encode Message</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+      </form>
+
+      <div id="progress" class="progress-container">
+        <div class="progress-bar"></div>
+        <span class="progress-text">⏳ Encoding in progress...</span>
+      </div>
+
+      <div class="page-footer">
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+      </div>
     </div>
   </div>
 
- <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script>
+    function showProgress() {
+      document.getElementById('progress').style.display = 'block';
+    }
+  </script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
 
 </body>
 </html>

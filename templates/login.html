@@ -2,28 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Login</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card shadow p-4 col-md-6 mx-auto">
-      <h3 class="text-center mb-3">🔐 Login</h3>
-      <form method="POST">
-        <div class="mb-3">
-          <label>Username</label>
-          <input type="text" name="username" class="form-control" required>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card login-card">
+      <div class="card-header">
+        <h1 class="page-title">Steganography</h1>
+        <h2 class="card-title">Login Account</h2>
+        <p class="card-subtitle">Access your account to encode or decode messages securely.</p>
+      </div>
+      
+      <form method="POST" class="auth-form">
+        <div class="input-group">
+          <input type="text" name="username" placeholder="Username" required>
         </div>
-        <div class="mb-3">
-          <label>Password</label>
-          <input type="password" name="password" class="form-control" required>
+        <div class="input-group">
+          <input type="password" name="password" placeholder="Password" required>
         </div>
-        <button class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="primary-btn">
+          <span>Login</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16l6-6-6-6 1.41-1.41L16.83 12l-6.42 6.42z"/>
+          </svg>
+        </button>
       </form>
-      <p class="text-center mt-3">New user? <a href="/register">Register here</a></p>
+
+      <div class="auth-footer">
+        <a href="/register" class="auth-link">New user? Register here</a>
+      </div>
     </div>
   </div>
-  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
 </body>
 </html>

@@ -1,23 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Decode Message</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="card p-4 shadow col-md-6 mx-auto">
-      <h3 class="text-center">🔓 Decode Hidden Message</h3>
-      <form method="POST" enctype="multipart/form-data">
-        <div class="mb-3">
-          <label>Encoded Image</label>
-          <input type="file" name="encoded_image" class="form-control" required>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Decode</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="card decode-card">
+      <div class="card-header">
+        <h1 class="page-title">Decode</h1>
+        <h2 class="card-title">🔓 Extract Message</h2>
+        <p class="card-subtitle">Reveal hidden text from encoded images</p>
+      </div>
+      
+      <form method="POST" enctype="multipart/form-data" class="decode-form">
+        <div class="input-group">
+          <label class="input-label">Encoded Image</label>
+          <div class="file-input-wrapper">
+            <input type="file" name="encoded_image" accept="image/*" required>
+            <span class="file-icon">🖼️</span>
+          </div>
         </div>
-        <button class="btn btn-warning w-100">Decode</button>
+        
+        <button type="submit" class="primary-btn large decode-btn">
+          <span>Decode Message</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+        </button>
       </form>
-      <a href="/dashboard" class="btn btn-link mt-3">Back to Dashboard</a>
+
+      <div class="page-footer">
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+      </div>
     </div>
   </div>
-<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+<script src="{{ url_for('static', filename='js/progress.js') }}"></script>
+
 </body>
 </html>
