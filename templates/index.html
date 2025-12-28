@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steganography Tool - Hide Messages in Images</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="fullscreen-container">
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="badge">🔒 Secure Image Steganography</div>
+        
+        <h1 class="hero-title">
+          Hide Messages<br>
+          <span class="gradient-text">Inside Images</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+          Invisible to the naked eye. Secure by design. 
+          Encode & decode secret messages using cutting-edge steganography.
+        </p>
+        
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <span>LSB Encoding</span>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <span>Instant Processing</span>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📱</div>
+            <span>Mobile Ready</span>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🔐</div>
+            <span>Secure Auth</span>
+          </div>
+        </div>
+        
+        <div class="cta-buttons">
+          <a href="/login" class="primary-btn hero-btn large">
+            <span>Start Encoding</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16l6-6-6-6 1.41-1.41L16.83 12l-6.42 6.42z"/>
+            </svg>
+          </a>
+          <a href="#features" class="secondary-btn hero-btn">View Demo</a>
+        </div>
+        
+        <div class="stats">
+          <span>Trusted by 100+ users</span>
+          <span>•</span>
+          <span>Zero data stored</span>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+  <div class="mockup-container">
+    <!-- Encode Mockup -->
+    <div class="mockup encode-mockup">
+      <div class="mockup-screen">
+        <div class="mockup-header">📷 Cover Image</div>
+        <div class="mockup-content">
+          <div class="mockup-image-placeholder"></div>
+          <div class="mockup-text">Your secret message...</div>
+        </div>
+        <div class="mockup-button">ENCODE</div>
+      </div>
+    </div>
+    
+    <!-- Decode Mockup -->
+    <div class="mockup decode-mockup">
+      <div class="mockup-screen">
+        <div class="mockup-header">🖼️ Encoded Image</div>
+        <div class="mockup-content">
+          <div class="mockup-image-placeholder decode"></div>
+        </div>
+        <div class="mockup-button decode-btn">DECODE</div>
+      </div>
+    </div>
+    
+    <!-- Result Mockup -->
+    <div class="mockup result-mockup">
+      <div class="mockup-screen">
+        <div class="mockup-header">✅ Result</div>
+        <div class="mockup-content">
+          <div class="mockup-image-placeholder result"></div>
+          <div class="mockup-revealed">Secret message revealed!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+</body>
+</html>
